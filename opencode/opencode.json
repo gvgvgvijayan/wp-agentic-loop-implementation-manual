@@ -1,0 +1,324 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "wp",
+  "agent": {
+    "wp": {
+      "description": "Primary WordPress agent. Owns the agentic loop and delegates to pipeline and domain sub-agents.",
+      "mode": "primary",
+      "permission": {
+        "edit": "allow",
+        "bash": "ask"
+      }
+    },
+    "requirement-asker": {
+      "description": "Interviews the user via the question tool to cover all needed details before a spec is written.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny",
+        "question": "allow"
+      }
+    },
+    "requirement-generator": {
+      "description": "Turns interview notes into a macro-requirements spec document.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "wp-lingo-translator": {
+      "description": "Converts layman requirements into WordPress terms and delegates back to the requirement-asker for storage/implementation decisions.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny",
+        "task": "allow"
+      }
+    },
+    "task-generator": {
+      "description": "Turns a spec into a phased plan with TDD steps, checkpoints, and commit SHAs.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "tracer-bullet": {
+      "description": "Builds a vertical slice / tracer bullet to validate an approach before full implementation.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "issue-creator": {
+      "description": "Opens a GitHub issue from a spec or plan using gh.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny",
+        "bash": {
+          "gh *": "allow",
+          "*": "ask"
+        }
+      }
+    },
+    "implementor": {
+      "description": "Implements an approved plan task by task, running checks after each task.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "qc": {
+      "description": "Local review agent. Runs the built-in /review on the working tree before a PR is opened.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "code-reviewer": {
+      "description": "Reviews a diff in a fresh context before a PR. Reports findings, does not edit.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "adr-agent": {
+      "description": "Builds ADRs and other engineering and architectural design documents.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "research-agent": {
+      "description": "Explores codebases and writes learnings back to memory/skills so the loop self-evolves.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "allow"
+      }
+    },
+    "interactivity-api": {
+      "description": "Domain expert in the WordPress Interactivity API (data-wp directives, script modules, client-side navigation).",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "html-api": {
+      "description": "Domain expert in the WordPress HTML API (WP_HTML_Tag_Processor, WP_HTML_Processor).",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "block-markup-designer": {
+      "description": "Domain expert in block markup, block.json, and block registration.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "security-agent": {
+      "description": "Domain expert in WordPress security: escaping, nonces, sanitization, capability checks.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "rest-api": {
+      "description": "Domain expert in the WordPress REST API: register_rest_route, WP_REST_Controller, schema/validation, permission_callback/auth, response shaping, register_rest_field/register_meta.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "block-themes": {
+      "description": "Domain expert in WordPress block themes: theme.json (settings/styles), templates and template parts, patterns, style variations, Site Editor troubleshooting.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "plugin-development": {
+      "description": "Domain expert in WordPress plugin development: architecture and hooks, activation/deactivation/uninstall, Settings API, data storage, cron, security, release packaging.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "performance": {
+      "description": "Domain expert in WordPress performance: profiling (WP-CLI profile/doctor, Server-Timing), database/query optimization, autoloaded options, object caching, cron, HTTP API.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "phpstan": {
+      "description": "Domain expert in PHPStan static analysis for WordPress: phpstan.neon setup, baselines, WordPress-specific typing, third-party plugin classes.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "wpcli-ops": {
+      "description": "Domain expert in WP-CLI operations: safe search-replace, db export/import, plugin/theme/user/content management, cron, cache flushing, multisite, wp-cli.yml automation.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "playground": {
+      "description": "Domain expert in WordPress Playground: routing, local CLI runs, browser previews, snapshots, mounts, version switching, and Blueprint JSON authoring.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "project-triage": {
+      "description": "Deterministically inspects a WordPress repository (plugin/theme/block theme/core/Gutenberg) and reports tooling, tests, and version hints to guide workflows.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "abilities-api": {
+      "description": "Domain expert in the WordPress Abilities API: wp_register_ability, categories, REST exposure, and permission checks for clients.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "query": {
+      "description": "Domain expert in WP_Query and the query classes: class-wp-query, class-wp-meta-query, class-wp-date-query, class-wp-tax-query. Covers query args, pagination, and performance.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "taxonomy": {
+      "description": "Domain expert in WordPress taxonomies and terms: taxonomy.php, class-wp-taxonomy, term queries, and term meta.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "media": {
+      "description": "Domain expert in WordPress media: media.php, attachments, image editing (class-wp-image-editor), and the media library.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "cron": {
+      "description": "Domain expert in WordPress cron: cron.php, wp_schedule_event, scheduled events, and wp-cron behavior.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "multisite": {
+      "description": "Domain expert in WordPress multisite: ms-*.php, network, sites, blogs, and site queries.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "rewrite": {
+      "description": "Domain expert in WordPress rewrite rules and permalinks: class-wp-rewrite, add_rewrite_rule, and flush_rewrite_rules.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "http": {
+      "description": "Domain expert in the WordPress HTTP API: class-wp-http, wp_remote_get/post, and HTTP request handling.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "option": {
+      "description": "Domain expert in WordPress options: option.php, get_option/update_option, autoload, and transients.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "formatting": {
+      "description": "Domain expert in WordPress formatting and sanitization functions: formatting.php, esc_* helpers, and wp_kses.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "customize": {
+      "description": "Domain expert in the WordPress Customizer: class-wp-customize-manager, settings, panels, sections, and controls.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "widgets": {
+      "description": "Domain expert in WordPress widgets: the widgets directory, WP_Widget, and widget registration.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "feed": {
+      "description": "Domain expert in WordPress feeds: feed.php, RSS/Atom output, and feed templates.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "shortcode": {
+      "description": "Domain expert in WordPress shortcodes: shortcodes.php, add_shortcode, and shortcode attributes.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "nav-menu": {
+      "description": "Domain expert in WordPress navigation menus: nav-menu.php, wp_nav_menu, and menu locations.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "locale": {
+      "description": "Domain expert in WordPress localization: class-wp-locale, i18n, translations, and locale switching.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "sitemaps": {
+      "description": "Domain expert in WordPress sitemaps: the sitemaps directory, class-wp-sitemaps, and sitemap providers.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "block-bindings": {
+      "description": "Domain expert in WordPress block bindings: block-bindings.php, the block-bindings registry, and binding sources.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    },
+    "ai-client": {
+      "description": "Domain expert in the WordPress AI client: the ai-client directory, adapters, and AI client APIs.",
+      "mode": "subagent",
+      "permission": {
+        "edit": "deny"
+      }
+    }
+  },
+  "command": {
+    "start-loop": {
+      "description": "Start the agentic loop from a spec.",
+      "template": "Read the spec at $1. Produce a plan and stop for approval. Do not edit code."
+    },
+    "address-review": {
+      "description": "Address GitHub review comments on the current PR.",
+      "template": "Address the following review comments on the current PR: $ARGUMENTS. Re-run checks and update the PR."
+    }
+  }
+}
