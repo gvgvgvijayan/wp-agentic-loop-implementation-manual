@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress media: media.php, attachments, image editing (class-wp-image-editor), and the media library.
+description: "Domain expert in WordPress media: media.php, attachments, image editing (class-wp-image-editor), and the media library."
 mode: subagent
 permission:
   edit: deny

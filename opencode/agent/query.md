@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WP_Query and the query classes: class-wp-query, class-wp-meta-query, class-wp-date-query, class-wp-tax-query. Covers query args, pagination, and performance.
+description: "Domain expert in WP_Query and the query classes: class-wp-query, class-wp-meta-query, class-wp-date-query, class-wp-tax-query. Covers query args, pagination, and performance."
 mode: subagent
 permission:
   edit: deny

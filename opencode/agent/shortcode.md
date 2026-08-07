@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress shortcodes: shortcodes.php, add_shortcode, and shortcode attributes.
+description: "Domain expert in WordPress shortcodes: shortcodes.php, add_shortcode, and shortcode attributes."
 mode: subagent
 permission:
   edit: deny

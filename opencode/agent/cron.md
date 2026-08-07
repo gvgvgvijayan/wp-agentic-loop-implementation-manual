@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress cron: cron.php, wp_schedule_event, scheduled events, and wp-cron behavior.
+description: "Domain expert in WordPress cron: cron.php, wp_schedule_event, scheduled events, and wp-cron behavior."
 mode: subagent
 permission:
   edit: deny

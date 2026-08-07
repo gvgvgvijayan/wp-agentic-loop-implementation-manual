@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress widgets: the widgets directory, WP_Widget, and widget registration.
+description: "Domain expert in WordPress widgets: the widgets directory, WP_Widget, and widget registration."
 mode: subagent
 permission:
   edit: deny

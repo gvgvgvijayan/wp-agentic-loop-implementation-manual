@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress localization: class-wp-locale, i18n, translations, and locale switching.
+description: "Domain expert in WordPress localization: class-wp-locale, i18n, translations, and locale switching."
 mode: subagent
 permission:
   edit: deny

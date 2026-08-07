@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress plugin development: architecture and hooks, activation/deactivation/uninstall, Settings API, data storage, cron, security, release packaging.
+description: "Domain expert in WordPress plugin development: architecture and hooks, activation/deactivation/uninstall, Settings API, data storage, cron, security, release packaging."
 mode: subagent
 permission:
   edit: deny

@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress block themes: theme.json (settings/styles), templates and template parts, patterns, style variations, Site Editor troubleshooting.
+description: "Domain expert in WordPress block themes: theme.json (settings/styles), templates and template parts, patterns, style variations, Site Editor troubleshooting."
 mode: subagent
 permission:
   edit: deny

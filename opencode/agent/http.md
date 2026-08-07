@@ -1,5 +1,5 @@
 ---
-description: Domain expert in the WordPress HTTP API: class-wp-http, wp_remote_get/post, and HTTP request handling.
+description: "Domain expert in the WordPress HTTP API: class-wp-http, wp_remote_get/post, and HTTP request handling."
 mode: subagent
 permission:
   edit: deny

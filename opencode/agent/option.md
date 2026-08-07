@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress options: option.php, get_option/update_option, autoload, and transients.
+description: "Domain expert in WordPress options: option.php, get_option/update_option, autoload, and transients."
 mode: subagent
 permission:
   edit: deny

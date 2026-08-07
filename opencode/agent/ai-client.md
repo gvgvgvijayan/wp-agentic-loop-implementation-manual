@@ -1,5 +1,5 @@
 ---
-description: Domain expert in the WordPress AI client: the ai-client directory, adapters, and AI client APIs.
+description: "Domain expert in the WordPress AI client: the ai-client directory, adapters, and AI client APIs."
 mode: subagent
 permission:
   edit: deny

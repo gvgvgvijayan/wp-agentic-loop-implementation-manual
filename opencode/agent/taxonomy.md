@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress taxonomies and terms: taxonomy.php, class-wp-taxonomy, term queries, and term meta.
+description: "Domain expert in WordPress taxonomies and terms: taxonomy.php, class-wp-taxonomy, term queries, and term meta."
 mode: subagent
 permission:
   edit: deny

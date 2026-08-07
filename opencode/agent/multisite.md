@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress multisite: ms-*.php, network, sites, blogs, and site queries.
+description: "Domain expert in WordPress multisite: ms-*.php, network, sites, blogs, and site queries."
 mode: subagent
 permission:
   edit: deny

@@ -1,5 +1,5 @@
 ---
-description: Domain expert in the WordPress REST API: register_rest_route, WP_REST_Controller, schema/validation, permission_callback/auth, response shaping, register_rest_field/register_meta.
+description: "Domain expert in the WordPress REST API: register_rest_route, WP_REST_Controller, schema/validation, permission_callback/auth, response shaping, register_rest_field/register_meta."
 mode: subagent
 permission:
   edit: deny

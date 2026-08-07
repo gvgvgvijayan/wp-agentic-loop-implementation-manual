@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress navigation menus: nav-menu.php, wp_nav_menu, and menu locations.
+description: "Domain expert in WordPress navigation menus: nav-menu.php, wp_nav_menu, and menu locations."
 mode: subagent
 permission:
   edit: deny

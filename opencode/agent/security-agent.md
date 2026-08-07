@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress security: escaping, nonces, sanitization, capability checks.
+description: "Domain expert in WordPress security: escaping, nonces, sanitization, capability checks."
 mode: subagent
 permission:
   edit: deny

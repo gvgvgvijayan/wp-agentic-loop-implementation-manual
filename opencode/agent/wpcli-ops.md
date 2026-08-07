@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WP-CLI operations: safe search-replace, db export/import, plugin/theme/user/content management, cron, cache flushing, multisite, wp-cli.yml automation.
+description: "Domain expert in WP-CLI operations: safe search-replace, db export/import, plugin/theme/user/content management, cron, cache flushing, multisite, wp-cli.yml automation."
 mode: subagent
 permission:
   edit: deny

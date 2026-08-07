@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress rewrite rules and permalinks: class-wp-rewrite, add_rewrite_rule, and flush_rewrite_rules.
+description: "Domain expert in WordPress rewrite rules and permalinks: class-wp-rewrite, add_rewrite_rule, and flush_rewrite_rules."
 mode: subagent
 permission:
   edit: deny

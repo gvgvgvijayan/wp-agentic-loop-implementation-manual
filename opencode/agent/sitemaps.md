@@ -1,5 +1,5 @@
 ---
-description: Domain expert in WordPress sitemaps: the sitemaps directory, class-wp-sitemaps, and sitemap providers.
+description: "Domain expert in WordPress sitemaps: the sitemaps directory, class-wp-sitemaps, and sitemap providers."
 mode: subagent
 permission:
   edit: deny

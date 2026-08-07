@@ -1,5 +1,5 @@
 ---
-description: Domain expert in the WordPress Abilities API: wp_register_ability, categories, REST exposure, and permission checks for clients.
+description: "Domain expert in the WordPress Abilities API: wp_register_ability, categories, REST exposure, and permission checks for clients."
 mode: subagent
 permission:
   edit: deny
