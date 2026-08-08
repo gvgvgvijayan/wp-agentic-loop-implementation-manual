@@ -31,18 +31,20 @@ Each stage produces a written artifact the next stage consumes.
 
 ## 14.3 The WP Lingo Translator
 
-This agent converts layman requirements into WordPress-based terms, then **delegates
-back to the requirement-asker** to interview the user about the specifics.
+This agent converts layman requirements into WordPress-based terms, then **reports the
+open WordPress-specific questions back to the `wp` primary agent**, which re-invokes
+the requirement-asker to interview the user about the specifics.
 
 Example: the user says *"I need an alternative style."*
 
-The translator recognizes this maps to **`register_block_style()`** and delegates back
-to the asker to interview the user on how the style will be stored — inline, `style_data`,
-or other options — per the `register_block_style` documentation.
+The translator recognizes this maps to **`register_block_style()`** and reports back to
+`wp` with the open question: how the style will be stored — inline, `style_data`, or
+other options — per the `register_block_style` documentation. `wp` re-invokes the asker
+to interview the user.
 
 This is the key pattern: **the translator does not guess; it asks.** It converts the
-language, then hands the interview back to the asker to pin down the WordPress-specific
-decision.
+language, then hands the open questions back to `wp` so the asker can pin down the
+WordPress-specific decision.
 
 ## 14.4 Supporting agents
 
