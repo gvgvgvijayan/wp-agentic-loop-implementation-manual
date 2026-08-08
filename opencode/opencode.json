@@ -315,10 +315,12 @@
   "command": {
     "start-loop": {
       "description": "Start the agentic loop. If a spec path is given, produce a plan and stop for approval. If no spec is given, run the requirement-asker first.",
+      "agent": "wp",
       "template": "If $1 is provided, read the spec at $1, produce a plan, and stop for approval. If $1 is empty, trigger the requirement-asker to interview the user and generate the spec first. Do not edit code until the plan is approved."
     },
     "address-review": {
       "description": "Address GitHub review comments on the current PR.",
+      "agent": "wp",
       "template": "Address the following review comments on the current PR: $ARGUMENTS. Re-run checks and update the PR."
     }
   }
