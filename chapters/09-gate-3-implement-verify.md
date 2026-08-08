@@ -30,10 +30,14 @@ npm run build            # production build
 npm run lint:js          # ESLint
 npm run lint:css         # Stylelint
 composer run lint        # PHPCS (or npm run lint:php)
-npm run test:unit:php    # PHPUnit in-container (setup + base)
-npm run test:e2e         # Playwright
+npm run test:unit:php    # PHPUnit in-container (verify exact name in package.json)
+npm run test:e2e         # Playwright (wp-scripts test-e2e)
 npm run build            # wp-scripts build --webpack-copy-php --experimental-modules
 ```
+
+> Always confirm the exact script names in the target repo's `AGENTS.md` and
+> `package.json`. The invariant is containerized PHPUnit and the project's own
+> lint/test commands, not a specific npm script name.
 
 ### The verification order
 

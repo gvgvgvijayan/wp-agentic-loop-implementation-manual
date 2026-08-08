@@ -79,18 +79,27 @@ tests. The agent must run it, or tests fail with confusing symptoms.
 The single most important rule: **run PHPUnit inside the `wp-env` container, never
 directly on the host.** The host does not have WordPress loaded.
 
-The standard two-step pattern:
+The exact npm script names differ by repo (check `AGENTS.md` and `package.json`), but
+all follow the same two-step shape:
+
+1. Start `wp-env` (once per session).
+2. Run PHPUnit *inside* the test container.
+
+A common wrapper:
 
 ```bash
-npm run test:unit:php:setup   # Start wp-env (once per session)
-npm run test:unit:php:base     # Run PHPUnit inside the container
+npm run test:unit:php:setup   # e.g. `wp-env start`
+npm run test:unit:php:base     # e.g. `wp-env run tests-cli --env-cwd=wp-content/plugins/my-plugin vendor/bin/phpunit`
 ```
 
-Where `test:unit:php:base` looks like:
+Equivalent examples from real repos:
 
-```bash
-wp-env run tests-cli --env-cwd=wp-content/plugins/my-plugin vendor/bin/phpunit
-```
+- Gutenberg: `npm run test:php`
+- WooCommerce plugin: `pnpm run test:php:env -- --filter YourTestClass`
+- wordpress-develop: `npm run test:php`
+
+> **Invariant:** PHPUnit runs in a container that has WordPress and the test database
+> loaded. Never run `vendor/bin/phpunit` directly on the host.
 
 `phpunit.xml.dist` bootstraps the WordPress test environment:
 
@@ -133,15 +142,18 @@ export default defineConfig( {
 } );
 ```
 
-Commands:
+Commands (use the script names defined in the repo's `package.json`; these are
+representative):
 
 ```bash
-npm run test:e2e          # run all specs
+npm run test:e2e          # run all specs (wp-scripts test-e2e)
 npm run test:e2e:ui       # Playwright UI mode
 npm run test:e2e:debug    # Playwright inspector
 ```
 
-Failed tests capture snapshots into `artifacts/` (override with `WP_ARTIFACTS_PATH`).
+`wp-scripts test-e2e` is the canonical alias; `wp-scripts test-playwright` is an alias
+that still works in most setups. Failed tests capture snapshots into `artifacts/`
+(override with `WP_ARTIFACTS_PATH`).
 
 ## 5.6 Node version pinning
 
@@ -159,7 +171,7 @@ Before claiming a task is done, the agent must run, in order:
 2. `npm run env:setup` (if the repo has one).
 3. `npm run lint:js` and `npm run lint:css` (or the repo's lint scripts).
 4. `composer run lint` (PHPCS) — or `npm run lint:php` in Gutenberg.
-5. `npm run test:unit:php` (PHPUnit in-container).
-6. `npm run test:e2e` (Playwright) for user-facing flows.
+5. The repo's PHPUnit script, **inside the wp-env container**.
+6. The repo's E2E script (Playwright, usually `test-e2e`) for user-facing flows.
 
 Only when all pass is the task "done."
