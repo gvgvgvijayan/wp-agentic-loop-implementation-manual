@@ -4,6 +4,11 @@
 
 *Version 1.0 — written for a WordPress developer working daily in the Gutenberg codebase*
 
+> **Deprecated.** This single-file draft is retained for reference. The concepts
+> (four gates, "every handoff is a written contract") are still valid, but the tooling
+> and examples are superseded by the chapter-split manual. New work should follow
+> [`toc.md`](../toc.md) and [`checklist.md`](../checklist.md).
+
 ---
 
 ## Table of Contents

@@ -135,10 +135,10 @@ Check each Level-3 box. A phase is complete when all its Level-3 boxes are check
 ### 5.2 Supporting agents
 - [ ] `adr-agent` produces ADRs and architectural docs.
 - [ ] `research-agent` explores and writes back learnings (self-evolving).
-- [ ] Domain agents (Interactivity API, HTML API, block-markup, security) exist as sub-agents.
-- [ ] Extended domain agents (REST API, block-themes, plugin-development, performance, phpstan, wpcli-ops, playground, project-triage, abilities-api) exist as sub-agents.
-- [ ] Core-subsystem agents (query, taxonomy, media, cron, multisite, rewrite, http, option, formatting, customize, widgets, feed, shortcode, nav-menu, locale, sitemaps, block-bindings, ai-client) exist as sub-agents.
-- [ ] Real-world domain experts (e.g. hospital-manager) exist as sub-agents, delegated by the primary agent.
+- [ ] Domain agents (`interactivity-api`, `html-api`, `block-markup-designer`, `security-agent`) exist as sub-agents.
+- [ ] Extended domain agents (`rest-api`, `block-themes`, `plugin-development`, `performance`, `phpstan`, `wpcli-ops`, `playground`, `project-triage`, `abilities-api`) exist as sub-agents.
+- [ ] Core-subsystem agents (`query`, `taxonomy`, `media`, `cron`, `multisite`, `rewrite`, `http`, `option`, `formatting`, `customize`, `widgets`, `feed`, `shortcode`, `nav-menu`, `locale`, `sitemaps`, `block-bindings`, `ai-client`) exist as sub-agents.
+- [ ] Real-world domain experts (e.g. `hospital-manager` as a sample stub) exist as sub-agents, delegated by the primary agent. Their knowledge is backed by markdown/graph references, not hardcoded business rules.
 
 ### 5.3 Commands
 - [ ] `/start-loop` triggers the pipeline.

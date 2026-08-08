@@ -3,6 +3,7 @@
 - **Agent** — a configured runtime instance with a role, prompt, and permissions.
 - **AGENTS.md** — the repo-level agent contract: how to work in this codebase. opencode
   reads it natively.
+- **apiVersion** — the `block.json` API version. Modern blocks use `apiVersion: 3`.
 - **Command** — a reusable prompt you invoke to trigger a workflow.
 - **Hook** — code that runs on events; used to automate parts of the loop.
 - **Skill** — procedural, reusable guidance ("how to do this kind of work").
@@ -22,10 +23,14 @@
 - **PSR-4** — the PHP autoloading standard used for modern plugin/theme namespaces.
 - **Interactivity API (IAPI)** — the WordPress API for frontend interactivity via
   script modules and `data-wp-*` directives.
+- **viewScriptModule** — the `block.json` field that enqueues an Interactivity API
+  script module on the front end.
 - **HTML API** — `WP_HTML_Tag_Processor` and related classes for safely reading and
   modifying HTML.
 - **render_block filter** — a filter that modifies a block's rendered HTML server-side.
 - **register_block_style** — the API to add a style variant to an existing block.
+- **style_data** — block-style data attached via `register_block_style` or
+  `supports.styleData`.
 - **TDD** — test-driven development: write failing tests first, then implement.
 - **Red/Green/Refactor** — the TDD cycle: failing test → passing test → clean up.
 - **Checkpoint** — a commit at a phase boundary, with a verification report attached.
@@ -36,12 +41,17 @@
 - **PR Reviewer** — the human doing the GitHub review (the final quality gate).
 - **Agent swarm** — two or more agents working together on a task.
 - **ADR** — Architecture Decision Record: a document capturing a design decision.
+- **data-wp-key** — a stable directive key used for client-side navigation stability.
+- **client-side navigation** — Interactivity API feature where only the active region
+  is replaced; stores and keys must survive across navigations.
 - **Abilities API** — the WordPress API for capability-based permissions and REST
   authentication (`wp_register_ability`, `/wp-json/wp-abilities/v1/*`).
 - **WP-CLI** — the command-line interface for WordPress operations (`wp`).
 - **WordPress Playground** — a browser-based WordPress environment for previews,
   snapshots, and Blueprint-driven setup.
 - **PHPStan** — a static analysis tool for PHP, used to catch type and logic errors.
+- **PHPStan baseline** — a list of existing errors that are temporarily allowed while
+  new code is held to a higher standard.
 - **Project Triage** — deterministic inspection of a WordPress repo to detect type,
   tooling, and versions.
 - **WP_Query** — the main WordPress query class for retrieving posts.
