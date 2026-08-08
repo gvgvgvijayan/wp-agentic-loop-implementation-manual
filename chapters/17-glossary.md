@@ -29,8 +29,7 @@
   modifying HTML.
 - **render_block filter** — a filter that modifies a block's rendered HTML server-side.
 - **register_block_style** — the API to add a style variant to an existing block.
-- **style_data** — block-style data attached via `register_block_style` or
-  `supports.styleData`.
+- **style_data** — block-style data attached via `register_block_style` (WP 6.6+).
 - **TDD** — test-driven development: write failing tests first, then implement.
 - **Red/Green/Refactor** — the TDD cycle: failing test → passing test → clean up.
 - **Checkpoint** — a commit at a phase boundary, with a verification report attached.
