@@ -77,7 +77,9 @@ npm run test:unit         # Jest unit tests
 ## 3.3 Skills: procedural knowledge
 
 `AGENTS.md` answers "how do I work here?" **Skills** answer "how do I do *this specific
-kind of work*?" WooCommerce organizes its procedural knowledge into `.ai/skills/`:
+kind of work*?" WooCommerce organizes its procedural knowledge into `.ai/skills/`;
+Gutenberg keeps skills under `.agents/skills/` and copies them to `.claude/skills/` via
+`npm run agents:setup`:
 
 - `woocommerce-dev-cycle` — testing and linting workflows.
 - `woocommerce-local-env` — local environment setup, wp-env commands.
@@ -98,6 +100,9 @@ description: Use when writing or running WordPress tests and linting (PHPUnit, P
 
 (procedural instructions...)
 ```
+
+In Gutenberg, run `npm run agents:setup` after changing skills so they are copied to the
+Claude-compatible `.claude/skills/` directory.
 
 ## 3.4 How this pairs with opencode
 

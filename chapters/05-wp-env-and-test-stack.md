@@ -126,12 +126,12 @@ Equivalent examples from real repos:
 
 ## 5.5 Playwright (E2E)
 
-Playwright runs through `wp-scripts test-playwright`. The config extends the
+Playwright runs through `wp-scripts test-e2e`. The config extends the
 `@wordpress/scripts` defaults:
 
 ```ts
 import { defineConfig, devices } from '@playwright/test';
-const baseConfig = require( '@wordpress/scripts/config/playwright.config' );
+import baseConfig from '@wordpress/scripts/config/playwright.config';
 
 export default defineConfig( {
     ...baseConfig,

@@ -98,7 +98,7 @@ description: Use when writing or running WordPress tests and linting (PHPUnit, P
     "test:unit:php": "npm run test:unit:php:setup && npm run test:unit:php:base",
     "test:unit:php:base": "wp-env run tests-cli --env-cwd=wp-content/plugins/my-plugin vendor/bin/phpunit",
     "test:unit:php:setup": "wp-env start",
-    "test:e2e": "wp-scripts test-playwright --config playwright.config.ts"
+    "test:e2e": "wp-scripts test-e2e --config playwright.config.ts"
   }
 }
 ```
