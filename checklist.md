@@ -128,7 +128,7 @@ Check each Level-3 box. A phase is complete when all its Level-3 boxes are check
 - [ ] `tracer-bullet` builds a vertical slice.
 - [ ] `issue-creator` opens a GitHub issue from the spec/plan.
 - [ ] `implementor` implements the plan.
-- [ ] `qc` does a local review via the built-in `/review`.
+- [ ] `qc` does a local review of the working tree before the PR.
 - [ ] `code-reviewer` reviews the diff before the PR.
 - [ ] `PR-reviewer` is the **human** doing the GitHub review.
 

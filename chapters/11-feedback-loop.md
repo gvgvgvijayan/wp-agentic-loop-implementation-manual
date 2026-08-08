@@ -40,6 +40,7 @@ In the pipeline, a command wraps this:
 ```markdown
 ---
 description: Address GitHub review comments.
+agent: wp
 ---
 
 Address the following review comments on the current PR: $ARGUMENTS

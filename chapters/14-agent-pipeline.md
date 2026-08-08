@@ -26,7 +26,7 @@ Each stage produces a written artifact the next stage consumes.
 | **tracer-bullet** | Builds a vertical slice / tracer bullet to validate the approach. | working slice | edit |
 | **issue-creator** | Opens a GitHub issue from the spec/plan. | GitHub issue | bash (gh) |
 | **implementor** | Implements the plan task by task. | code + tests | edit |
-| **qc** | Local review via the built-in `/review` before the PR. | review report | edit: deny |
+| **qc** | Local review of the working tree before the PR. | review report | edit: deny |
 | **code-reviewer** | Reviews the diff in a fresh context before the PR. | review findings | edit: deny |
 | **PR-reviewer** | **You** — the human doing the GitHub review. | review comments | — |
 
