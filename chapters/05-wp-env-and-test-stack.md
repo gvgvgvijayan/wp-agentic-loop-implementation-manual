@@ -1,7 +1,8 @@
 # 05 — wp-env & the Modern Test Stack
 
 Every modern WordPress repo — Gutenberg, WooCommerce, wp-movies-demo, advanced-query-loop,
-and the hospital plugins — uses **`wp-env`** for local development and testing. This
+CoBlocks, and production plugin/theme projects — uses **`wp-env`** for local development
+and testing. This
 chapter is the practical guide the agent needs to run tests correctly.
 
 ## 5.1 What `wp-env` is
@@ -18,17 +19,17 @@ npm run wp-env stop
 
 ## 5.2 `.wp-env.json`
 
-The environment is configured in `.wp-env.json`. A realistic example (from the
-hospital booking plugin):
+The environment is configured in `.wp-env.json`. A realistic example for a plugin
+that depends on another plugin and a set of mu-plugins:
 
 ```json
 {
   "core": null,
   "phpVersion": "8.3",
-  "plugins": [ ".", "../advanced-custom-fields" ],
+  "plugins": [ ".", "../my-dependency-plugin" ],
   "mappings": {
-    "wp-content/plugins/vg-hospital-appointment-booking": ".",
-    "wp-content/plugins/advanced-custom-fields": "../advanced-custom-fields",
+    "wp-content/plugins/my-plugin": ".",
+    "wp-content/plugins/my-dependency-plugin": "../my-dependency-plugin",
     "wp-content/mu-plugins": "../../mu-plugins"
   },
   "config": {
@@ -50,27 +51,28 @@ Key fields:
 
 ## 5.3 The `env:setup` pattern (critical)
 
-A bare `wp-env start` is often not enough. The hospital booking plugin has a setup
-script (`bin/setup-test-env.sh`) that:
+A bare `wp-env start` is often not enough. Real plugins with custom post types,
+rewrite rules, or seed data need a setup script (commonly `bin/setup-test-env.sh`
+or `tests/bin/env-setup.sh`) that:
 
-1. Activates the block theme.
-2. **Grants custom post-type capabilities** to the admin role.
+1. Activates the required theme.
+2. **Grants custom post-type or capability changes** to the relevant role.
 3. Sets pretty permalinks and flushes rewrite rules.
-4. **Creates linked mock data** (branches, departments, doctors) that tests depend on.
+4. **Creates linked mock data** that tests depend on.
 5. Flushes caches/transients.
 
 This is wired as `npm run env:setup` and documented as **CRITICAL** before running
 tests. The agent must run it, or tests fail with confusing symptoms.
 
-### The gotchas (from the booking plugin's testing guide)
+### The gotchas (from projects that use env:setup)
 
 | Symptom | Cause / fix |
 |---|---|
-| **403 Forbidden** on REST requests | Permissions not applied. Re-run `env:setup`. |
-| **Empty dropdowns** | `related_branches` meta missing or cache stale. Re-run `env:setup`. |
-| **500 errors** | PHP fatal in `render.php`. Check container logs: `npx wp-env run cli tail -n 50 /var/www/html/wp-content/debug.log`. |
+| **403 Forbidden** on REST requests | Permissions/capabilities not applied. Re-run `env:setup`. |
+| **Empty dropdowns / missing related data** | Seed meta or terms missing, or cache stale. Re-run `env:setup`. |
+| **500 errors** | PHP fatal in `render.php` or a plugin file. Check container logs: `npx wp-env run cli tail -n 50 /var/www/html/wp-content/debug.log`. |
 | **Playwright strict-mode failures** | Hidden steps are still in the DOM. Use specific locators, e.g. `getByRole('heading', { name: '...' })`. |
-| **`window is not defined`** | Node version too new. Pin to the LTS the scripts support (e.g. v22). |
+| **`window is not defined`** | Node version too new. Pin to the LTS in `.nvmrc` / `engines`. |
 
 ## 5.4 PHPUnit — in the container, never on the host
 
@@ -143,8 +145,7 @@ Failed tests capture snapshots into `artifacts/` (override with `WP_ARTIFACTS_PA
 
 ## 5.6 Node version pinning
 
-`@wordpress/scripts` requires an LTS Node. The hospital plugins pin v22 and note that
-newer versions (v24) cause `window is not defined` errors. Pin it:
+`@wordpress/scripts` requires a supported LTS Node. Pin it:
 
 - `.nvmrc` with the version, and/or
 - `engines` in `package.json`, and/or

@@ -17,7 +17,8 @@ Gutenberg is a monorepo: `packages/` (JS/TS blocks and packages), `lib/` (PHP),
 
 ## 12.2 Modern plugin/theme architecture
 
-The hospital plugins and themes demonstrate the modern patterns:
+Modern plugin/theme projects (including those cross-checked for this manual)
+demonstrate these patterns:
 
 ### PSR-4 autoloading
 
@@ -58,9 +59,9 @@ callback (or a `render` field pointing to a PHP file). The build copies PHP with
 
 ### `theme.json`
 
-Block themes configure global styles, settings, and templates in `theme.json`. The
-hospital themes use `wp-scripts build --webpack-copy-php --experimental-modules
---webpack-src-dir=assets --output-path=public`.
+Block themes configure global styles, settings, and templates in `theme.json`.
+x3p0-ideas, for example, uses `wp-scripts build --webpack-src-dir=resources
+--output-path=public --experimental-modules`.
 
 ## 12.3 Common WordPress tasks and their verification
 
