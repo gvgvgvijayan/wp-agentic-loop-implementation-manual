@@ -17,7 +17,8 @@ Gutenberg is a monorepo: `packages/` (JS/TS blocks and packages), `lib/` (PHP),
 
 ## 12.2 Modern plugin/theme architecture
 
-The hospital plugins and themes demonstrate the modern patterns:
+Modern plugin/theme projects (including those cross-checked for this manual)
+demonstrate these patterns:
 
 ### PSR-4 autoloading
 

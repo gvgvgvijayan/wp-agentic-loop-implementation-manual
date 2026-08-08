@@ -33,7 +33,7 @@ hooks at all — commands are enough.
 root that tells any agent how to work in this codebase: setup commands, key
 directories, code-quality commands, architectural decisions, common pitfalls, and PR
 instructions. opencode reads it natively. This is the modern pattern — Gutenberg,
-WooCommerce, and the hospital plugins all ship one. See [Chapter 03](./03-agents-and-skills.md).
+WooCommerce, and many production WordPress plugins/themes all ship one. See [Chapter 03](./03-agents-and-skills.md).
 
 ## 2.5 Skill
 

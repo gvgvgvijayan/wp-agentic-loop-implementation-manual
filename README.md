@@ -36,9 +36,9 @@ verified against real codebases:
 - **WooCommerce** (`~/code/wp/woocommerce`) — `.ai/skills/` taxonomy
 - **wordpress-develop** (`~/code/wp/wordpress-develop`) — core test stack, PHPStan
 - **wp-movies-demo, x3p0-ideas, advanced-query-loop, coblocks** — modern plugin/theme patterns
-- **Your hospital plugins & themes** — `wp-env` + `env:setup`, PHPUnit-in-container,
-  Playwright, PHP-Scoper, PSR-4, conductor-style TDD
-- **Your swirl docs** — `render_block` hooks, the HTML API, and the Interactivity API
+- **Private plugin/theme projects cross-checked for this manual** — `wp-env` + `env:setup`,
+  PHPUnit-in-container, Playwright, PHP-Scoper, PSR-4, conductor-style TDD
+- **The Interactivity API case study** — `render_block` hooks, the HTML API, and the Interactivity API
 
 ## How to read it
 
