@@ -123,7 +123,7 @@ Check each Level-3 box. A phase is complete when all its Level-3 boxes are check
 ### 5.1 Pipeline agents
 - [ ] `requirement-asker` interviews the user via the `question` tool.
 - [ ] `requirement-generator` turns interview notes into a spec.
-- [ ] `wp-lingo-translator` converts layman terms to WordPress terms and delegates back for storage decisions.
+- [ ] `wp-lingo-translator` converts layman terms to WordPress terms and reports open questions back to `wp`, which re-invokes the requirement-asker.
 - [ ] `task-generator` turns the spec into a phased plan.
 - [ ] `tracer-bullet` builds a vertical slice.
 - [ ] `issue-creator` opens a GitHub issue from the spec/plan.
