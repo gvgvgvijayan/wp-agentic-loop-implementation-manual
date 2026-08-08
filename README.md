@@ -30,15 +30,8 @@ are optional accelerators, not requirements.
 The original `deprecated/wordpress-agentic-loop.md` captured the timeless *concepts* (the four
 gates, "every handoff is a written contract"). This manual keeps those concepts and
 **rewrites the tooling** to match how modern WordPress development actually works,
-verified against real codebases:
-
-- **Gutenberg** (`~/code/gutenberg`) — `AGENTS.md`, `wp-env`, `@wordpress/scripts`, `wp-build`
-- **WooCommerce** (`~/code/wp/woocommerce`) — `.ai/skills/` taxonomy
-- **wordpress-develop** (`~/code/wp/wordpress-develop`) — core test stack, PHPStan
-- **wp-movies-demo, x3p0-ideas, advanced-query-loop, coblocks** — modern plugin/theme patterns
-- **Private plugin/theme projects cross-checked for this manual** — `wp-env` + `env:setup`,
-  PHPUnit-in-container, Playwright, PHP-Scoper, PSR-4, conductor-style TDD
-- **The Interactivity API case study** — `render_block` hooks, the HTML API, and the Interactivity API
+verified against real codebases. See [`CHANGELOG.md`](./CHANGELOG.md) for the full
+evolution.
 
 ## How to read it
 

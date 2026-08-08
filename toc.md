@@ -1,8 +1,7 @@
 # Table of Contents — The WordPress Agentic Loop
 
 This is the **indexer** for the manual. Each chapter has a one-line summary, its
-prerequisites, and its place in the reading order. Chapters marked **[NEW]** were added
-in this rewrite; the rest are the original concepts, updated.
+prerequisites, and its place in the reading order.
 
 ## Reading order
 
@@ -22,7 +21,7 @@ in this rewrite; the rest are the original concepts, updated.
 | 01 | [The Big Picture](./chapters/01-big-picture.md) | The loop in one diagram; why human-in-the-loop at the edges; the three layers. | 00 |
 | 02 | [Core Concepts](./chapters/02-core-concepts.md) | Shared vocabulary: agent, command, hook, spec, plan, PR, handoff, definition of done. | 01 |
 
-## Part II — Toolchain **[NEW]**
+## Part II — Toolchain
 
 | # | Chapter | Summary | Prereqs |
 |---|---------|---------|---------|
@@ -46,8 +45,8 @@ in this rewrite; the rest are the original concepts, updated.
 | # | Chapter | Summary | Prereqs |
 |---|---------|---------|---------|
 | 12 | [WordPress Playbook](./chapters/12-wordpress-playbook.md) | Modern architecture: PSR-4, PHP-Scoper, `block.json`+`render.php`, Interactivity API, Data Views, `theme.json`. | 04–06 |
-| 13 | [Render-Block Hooks, HTML API & IAPI](./chapters/13-render-block-hooks-and-iapis.md) **[NEW]** | Extending core blocks: `render_block` filters, `WP_HTML_Tag_Processor`, Interactivity directives. From the swirl case study. | 12 |
-| 14 | [The Agent Pipeline](./chapters/14-agent-pipeline.md) **[NEW]** | The full handoff chain: requirement-asker → … → PR-reviewer, plus ADR/research/domain agents. | 03, 07–11 |
+| 13 | [Render-Block Hooks, HTML API & IAPI](./chapters/13-render-block-hooks-and-iapis.md) | Extending core blocks: `render_block` filters, `WP_HTML_Tag_Processor`, Interactivity directives. From the swirl case study. | 12 |
+| 14 | [The Agent Pipeline](./chapters/14-agent-pipeline.md) | The full handoff chain: requirement-asker → … → PR-reviewer, plus ADR/research/domain agents. | 03, 07–11 |
 | 15 | [A Complete Worked Example](./chapters/15-worked-example.md) | A block built through the whole loop, with a conductor-style phased plan. | 07–14 |
 
 ## Part V — Reference
@@ -67,7 +66,3 @@ in this rewrite; the rest are the original concepts, updated.
 | [`checklist.md`](./checklist.md) | 3-level implementation checklist an agent can follow to reproduce the loop in another system. |
 | [`opencode/`](./opencode/) | Documented agent ecosystem (agents, commands, project `opencode.json`). Self-contained; does not touch global config. |
 
-## Status legend
-
-- **[NEW]** — added in this rewrite.
-- *(no tag)* — original concept, updated to modern tooling.
