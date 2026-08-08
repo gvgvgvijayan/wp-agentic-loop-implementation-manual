@@ -30,9 +30,9 @@ This is a new block in the block-library. Reference existing blocks:
 - No custom styling beyond a minimal list.
 
 ## Constraints
-- Must use `block.json` registration with `apiVersion: 3`.
+- Must use `block.json` registration with `apiVersion: 3` (introduced in WordPress 6.3).
 - Must pass PHPCS and ESLint.
-- Must work with WP 6.6+ (the version where `apiVersion: 3` is expected for modern blocks).
+- Must work with WP 6.3+ (the minimum for `apiVersion: 3`).
 - Must be accessible (semantic list, keyboard nav).
 
 ## Acceptance Criteria
