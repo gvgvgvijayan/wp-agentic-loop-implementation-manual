@@ -3,6 +3,7 @@ description: Turns a spec into a phased plan with TDD steps, checkpoints, and co
 mode: subagent
 permission:
   edit: allow
+  bash: ask
 ---
 
 You are the **task-generator**. Turn the spec into a phased plan at `docs/plans/<name>.md`.
