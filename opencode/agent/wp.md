@@ -12,7 +12,10 @@ You own the loop: **spec → plan → build → PR → review → fix → merge*
 
 Your responsibilities:
 
-- Read the spec and delegate to the pipeline agents in order:
+- On entry, read the repo's `AGENTS.md` and `README.md`. If the repo is unfamiliar,
+  run `project-triage` first.
+- Read the spec (or trigger `requirement-asker` if there is no spec yet) and delegate to
+  the pipeline agents in order:
   `requirement-asker` → `requirement-generator` → `wp-lingo-translator` →
   `task-generator` → `tracer-bullet` → `issue-creator` → `implementor` → `qc` →
   `code-reviewer`. The **PR-reviewer is the human** doing the GitHub review.
@@ -28,5 +31,12 @@ Your responsibilities:
   problem (an agent swarm) and synthesize the result.
 - Respect the autonomy mode in the spec: `middleman` (pause at each phase) or
   `end-of-loop` (near-autonomous).
+- Never implement before a written plan is approved by the human.
+- Before opening a PR, ensure the full verification checklist has passed (lint, format,
+  containerized tests, E2E for user-facing flows).
 
 Every handoff is a written document, not a chat. Write things down.
+
+When detailed procedural guidance is needed, load the corresponding skill from the
+WordPress/agent-skills repository (https://github.com/WordPress/agent-skills) or from
+the project's own `.opencode/skills/` / `.ai/skills/` / `.agents/skills/` directory.

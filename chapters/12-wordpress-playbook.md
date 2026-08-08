@@ -17,7 +17,8 @@ Gutenberg is a monorepo: `packages/` (JS/TS blocks and packages), `lib/` (PHP),
 
 ## 12.2 Modern plugin/theme architecture
 
-The hospital plugins and themes demonstrate the modern patterns:
+Modern plugin/theme projects (including those cross-checked for this manual)
+demonstrate these patterns:
 
 ### PSR-4 autoloading
 
@@ -45,33 +46,45 @@ fully isolated copy.
 - `composer build` runs `prefix-deps` then `composer install --no-dev --optimize-autoloader`.
 - **Your source code must always import the prefixed namespace**, never the original.
 
-### `block.json` + `render.php`
+### `block.json` + `render.php` (plugin/theme convention)
 
-Modern blocks register via `block.json` and render server-side via a `render.php`
-callback (or a `render` field pointing to a PHP file). The build copies PHP with
-`--webpack-copy-php`.
+For plugins and themes, modern blocks register via `block.json` and render server-side
+via a `render` field pointing to `render.php`. The build copies PHP with
+`--webpack-copy-php`. This is the pattern used in wp-movies-demo and advanced-query-loop.
+
+> In Gutenberg core, dynamic blocks still live in `packages/block-library/src/<block>/index.php`
+> and use `register_block_type_from_metadata(..., ['render_callback' => '...'])`.
+> Do not copy the `render.php` convention into a Gutenberg core patch unless the repo
+> has moved to it.
 
 ### Interactivity API & Data Views
 
 - **Interactivity API** for frontend interactivity (script modules, `viewScriptModule`).
+  - Modern blocks use `apiVersion: 3` in `block.json`.
+  - Use `wp_interactivity_state()` for global state, `wp_interactivity_data_wp_context()`
+    for local context, and `supports.interactivity: true` so directives are processed on
+    the server.
+  - `data-wp-ignore` is deprecated in WordPress 6.9.
 - **Data Views** for admin list tables (filtering, searching, bulk actions).
 
 ### `theme.json`
 
-Block themes configure global styles, settings, and templates in `theme.json`. The
-hospital themes use `wp-scripts build --webpack-copy-php --experimental-modules
---webpack-src-dir=assets --output-path=public`.
+Block themes configure global styles, settings, and templates in `theme.json`. Modern
+themes use `theme.json` version 3 with newer top-level keys such as
+`settings.background.backgroundImage`, `settings.typography.fluid`, and per-element
+styles. x3p0-ideas, for example, uses `theme.json` v3 and builds with
+`wp-scripts build --webpack-src-dir=resources --output-path=public --experimental-modules`.
 
 ## 12.3 Common WordPress tasks and their verification
 
 | Task | Where | Verify with |
 |---|---|---|
-| Register a block | `block.json` + `index.js` | `npm run build`, manual render |
-| PHP function/class | `lib/` or plugin `includes/` | `composer run lint`, `npm run test:unit:php` |
+| Register a block | `block.json` (`apiVersion: 3`) + `index.js` | `npm run build`, manual render |
+| PHP function/class | `lib/` or plugin `includes/` | `composer run lint`, containerized PHPUnit |
 | Block editor JS | `packages/block-editor/` or `src/` | `npm run test:unit`, `npm run lint:js` |
-| REST API endpoint | `lib/` or plugin | `npm run test:unit:php`, manual `curl` |
-| Theme (block theme) | `theme.json`, templates | `npm run build`, visual check |
-| Extend a core block | `render_block` filter | `npm run test:unit:php`, manual render |
+| REST API endpoint | `lib/` or plugin | containerized PHPUnit, manual `curl` |
+| Theme (block theme) | `theme.json` (version 3), templates | `npm run build`, visual check |
+| Extend a core block | `render_block` filter | containerized PHPUnit, manual render |
 
 ## 12.4 WordPress conventions the agent must respect
 
@@ -81,6 +94,20 @@ hospital themes use `wp-scripts build --webpack-copy-php --experimental-modules
 - **Coding standards:** WordPress Coding Standards (PHPCS), ESLint for JS.
 - **Accessibility:** keyboard nav, ARIA, focus management.
 - **Back-compat:** don't break older WP versions unless the spec says so.
+
+## 12.6 PHPStan baselines as migration tools
+
+PHPStan is increasingly common in WordPress projects. Many repos use baseline files to
+avoid being overwhelmed by legacy issues:
+
+- **wordpress-develop** ships ~80 baseline files under `tests/phpstan/baselines/` and a
+  `phpstan.neon.dist` at level 5.
+- **WooCommerce** uses a single `phpstan-baseline.neon`.
+
+Treat the baseline as a **migration boundary**, not an excuse. New code should not add
+to the baseline. If an existing baseline error blocks your change, fix the underlying
+issue or add a narrowly-scoped inline exception with a comment. The goal is to shrink
+the baseline over time.
 
 ## 12.5 Where the code-graph tools help in WordPress
 

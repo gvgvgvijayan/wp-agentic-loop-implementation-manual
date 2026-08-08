@@ -34,10 +34,11 @@
       }
     },
     "task-generator": {
-      "description": "Turns a spec into a phased plan with TDD steps, checkpoints, and commit SHAs.",
+      "description": "Turns a spec into a phased plan with TDD steps, checkpoints, and commit SHAs. Has edit:allow so it can write docs/plans/; it must NOT edit source code.",
       "mode": "subagent",
       "permission": {
-        "edit": "allow"
+        "edit": "allow",
+        "bash": "ask"
       }
     },
     "tracer-bullet": {
@@ -53,8 +54,9 @@
       "permission": {
         "edit": "deny",
         "bash": {
-          "gh *": "allow",
-          "*": "ask"
+          "*": "ask",
+          "gh issue create*": "allow",
+          "gh issue edit*": "allow"
         }
       }
     },
@@ -313,8 +315,8 @@
   },
   "command": {
     "start-loop": {
-      "description": "Start the agentic loop from a spec.",
-      "template": "Read the spec at $1. Produce a plan and stop for approval. Do not edit code."
+      "description": "Start the agentic loop. If a spec path is given, produce a plan and stop for approval. If no spec is given, run the requirement-asker first.",
+      "template": "If $1 is provided, read the spec at $1, produce a plan, and stop for approval. If $1 is empty, trigger the requirement-asker to interview the user and generate the spec first. Do not edit code until the plan is approved."
     },
     "address-review": {
       "description": "Address GitHub review comments on the current PR.",

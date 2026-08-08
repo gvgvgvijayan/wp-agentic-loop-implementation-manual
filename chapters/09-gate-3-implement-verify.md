@@ -8,10 +8,11 @@ Chapter 06 (Red → Green → Refactor).
 
 ## 9.2 Verification is not optional — and the commands are correct
 
-The build agent must run the project's checks. **The commands below are the real ones**
-for modern WordPress repos (verified against Gutenberg, the hospital plugins, and the
-themes). The old draft's `composer run phpcs` / `composer run phpunit` are wrong for
-most repos.
+The build agent must run the project's checks. **The commands below are representative**
+for modern WordPress repos (verified against Gutenberg, WooCommerce, wp-movies-demo,
+x3p0-ideas, advanced-query-loop, and CoBlocks). The exact script names come from the
+target repo's `AGENTS.md` and `package.json`. The old draft's `composer run phpcs` /
+`composer run phpunit` are wrong for most repos.
 
 ### Gutenberg (monorepo)
 
@@ -29,10 +30,14 @@ npm run build            # production build
 npm run lint:js          # ESLint
 npm run lint:css         # Stylelint
 composer run lint        # PHPCS (or npm run lint:php)
-npm run test:unit:php    # PHPUnit in-container (setup + base)
-npm run test:e2e         # Playwright
+npm run test:unit:php    # PHPUnit in-container (verify exact name in package.json)
+npm run test:e2e         # Playwright (wp-scripts test-e2e)
 npm run build            # wp-scripts build --webpack-copy-php --experimental-modules
 ```
+
+> Always confirm the exact script names in the target repo's `AGENTS.md` and
+> `package.json`. The invariant is containerized PHPUnit and the project's own
+> lint/test commands, not a specific npm script name.
 
 ### The verification order
 

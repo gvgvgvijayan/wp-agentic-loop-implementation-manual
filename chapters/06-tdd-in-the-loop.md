@@ -1,9 +1,8 @@
 # 06 — TDD in the Loop
 
-The original draft treated verification as "run the checks." The real WordPress
-projects — especially the hospital plugins, which use a **conductor** workflow — treat
-it as a formal **test-driven development** discipline. This chapter folds that
-discipline into the loop.
+The original draft treated verification as "run the checks." Real WordPress
+projects that use a **conductor** workflow treat it as a formal **test-driven
+development** discipline. This chapter folds that discipline into the loop.
 
 ## 6.1 The Red/Green/Refactor cycle
 

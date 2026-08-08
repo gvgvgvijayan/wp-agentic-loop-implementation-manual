@@ -1,9 +1,9 @@
 # 13 — Render-Block Hooks, the HTML API & the Interactivity API
 
-This chapter is distilled from the **swirl** case study in the vijayan-child theme
-(`docs/issues/swirl/`). It teaches the canonical way to extend **core blocks** with
-interactivity — a common, high-value WordPress task that the original draft did not
-cover.
+This chapter is distilled from the **swirl** case study (extending `core/group` with
+Interactivity API directives). It teaches the canonical way to extend **core blocks**
+with interactivity — a common, high-value WordPress task that the original draft did
+not cover.
 
 ## 13.1 The problem: core blocks have frozen `save()` output
 
@@ -15,7 +15,8 @@ directives onto the rendered HTML.
 ## 13.2 The canonical pattern: `render_block` filter + `WP_HTML_Tag_Processor`
 
 The `core/image` lightbox is the canonical example
-(`gutenberg/packages/block-library/src/image/index.php`). It:
+(`gutenberg/packages/block-library/src/image/index.php`; ported to
+`wordpress-develop/src/wp-includes/blocks/image.php`). It:
 
 1. Instantiates a `WP_HTML_Tag_Processor` on the rendered block HTML.
 2. Adds a class and sets `data-wp-*` attributes:
@@ -33,7 +34,7 @@ $processor->set_attribute( 'data-wp-on--click', 'actions.showLightbox' );
 
 ## 13.3 The swirl pattern (from the case study)
 
-The swirl is an enhancement of `core/group`:
+The *swirl* is an enhancement of `core/group`:
 
 - `register_block_style( 'core/group', 'swirl' )` adds `is-style-swirl` to the wrapper
   for CSS targeting.
@@ -58,6 +59,8 @@ add_filter( 'render_block_core/group', function ( $block_content, $block ) {
 
 - **`wp_interactivity_state( 'swirl', $data )`** — serialize server data for the
   client store.
+- **`wp_interactivity_data_wp_context()`** — serialize local context for a specific
+  element. Use this for per-item state inside a `foreach`.
 - **`wp_interactivity_process_directives()`** — pre-resolve bindings server-side (e.g.
   `data-wp-bind--hidden` → `hidden`) to prevent a flash of all-details-visible on first
   paint.
@@ -69,6 +72,7 @@ add_filter( 'render_block_core/group', function ( $block_content, $block ) {
   but that breaks client-side nav.
 - **Static set → no `data-wp-each`** — for a fixed set of items, use a PHP `foreach`
   with per-item `data-wp-context`, not `data-wp-each` (which is for dynamic lists).
+- **`data-wp-ignore` is deprecated** in WordPress 6.9 — avoid it in new code.
 
 ## 13.5 Two-mechanism DOM mutation
 
