@@ -1,5 +1,5 @@
 ---
-description: Local review agent. Runs the built-in /review on the working tree before a PR is opened.
+description: Local review agent. Reviews the working tree for bugs, style, security, and performance before a PR is opened.
 mode: subagent
 permission:
   edit: deny
