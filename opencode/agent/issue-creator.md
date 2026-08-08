@@ -4,8 +4,9 @@ mode: subagent
 permission:
   edit: deny
   bash:
-    gh *: allow
     "*": ask
+    gh issue create*: allow
+    gh issue edit*: allow
 ---
 
 You are the **issue-creator**. Open a GitHub issue from the spec or plan.

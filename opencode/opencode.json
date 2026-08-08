@@ -26,11 +26,10 @@
       }
     },
     "wp-lingo-translator": {
-      "description": "Converts layman requirements into WordPress terms and delegates back to the requirement-asker for storage/implementation decisions.",
+      "description": "Converts layman requirements into WordPress terms and reports open WordPress-specific questions back to wp, which re-invokes the requirement-asker.",
       "mode": "subagent",
       "permission": {
-        "edit": "deny",
-        "task": "allow"
+        "edit": "deny"
       }
     },
     "task-generator": {
@@ -68,7 +67,7 @@
       }
     },
     "qc": {
-      "description": "Local review agent. Runs the built-in /review on the working tree before a PR is opened.",
+      "description": "Local review agent. Reviews the working tree for bugs, style, security, and performance before a PR is opened.",
       "mode": "subagent",
       "permission": {
         "edit": "deny"
