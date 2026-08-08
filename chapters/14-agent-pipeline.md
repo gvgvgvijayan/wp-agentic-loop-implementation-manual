@@ -8,8 +8,9 @@ is a written document.
 ## 14.1 The pipeline at a glance
 
 ```
-Requirement Asker → Requirement Generator → WP Lingo Translator → Task Generator
-→ Tracer Bullet → Issue Creator → Implementor → QC → Code Reviewer → PR Reviewer (human)
+Requirement Asker → WP Lingo Translator → Requirement Asker (round 2)
+→ Requirement Generator → Task Generator → Tracer Bullet → Issue Creator
+→ Implementor → QC → Code Reviewer → PR Reviewer (human)
 ```
 
 Each stage produces a written artifact the next stage consumes.
@@ -19,8 +20,8 @@ Each stage produces a written artifact the next stage consumes.
 | Agent | Role | Produces | Permissions |
 |---|---|---|---|
 | **requirement-asker** | Interviews you via the `question` tool to cover all needed details. | structured interview notes | read, question |
+| **wp-lingo-translator** | Converts layman requirements into WordPress terms and reports open questions back to `wp`. | translated requirement notes | read |
 | **requirement-generator** | Turns interview notes into a spec. | `docs/specs/<name>.md` | edit (docs) |
-| **wp-lingo-translator** | Converts layman requirements into WordPress terms. | translated requirement notes | read, task |
 | **task-generator** | Turns the spec into a phased plan with TDD steps. | `docs/plans/<name>.md` | edit (docs) |
 | **tracer-bullet** | Builds a vertical slice / tracer bullet to validate the approach. | working slice | edit |
 | **issue-creator** | Opens a GitHub issue from the spec/plan. | GitHub issue | bash (gh) |
@@ -31,18 +32,25 @@ Each stage produces a written artifact the next stage consumes.
 
 ## 14.3 The WP Lingo Translator
 
-This agent converts layman requirements into WordPress-based terms, then **delegates
-back to the requirement-asker** to interview the user about the specifics.
+This agent converts layman requirements into WordPress-based terms, then **reports the
+open WordPress-specific questions back to the `wp` primary agent**, which re-invokes
+the requirement-asker to interview the user about the specifics.
 
 Example: the user says *"I need an alternative style."*
 
-The translator recognizes this maps to **`register_block_style()`** and delegates back
-to the asker to interview the user on how the style will be stored — inline, `style_data`,
-or other options — per the `register_block_style` documentation.
+The translator recognizes this maps to **`register_block_style()`** and reports back to
+`wp` with the open question: how the style will be stored — inline, `style_data`, or
+other options — per the `register_block_style` documentation. `wp` re-invokes the asker
+to interview the user.
 
 This is the key pattern: **the translator does not guess; it asks.** It converts the
-language, then hands the interview back to the asker to pin down the WordPress-specific
-decision.
+language, then hands the open questions back to `wp` so the asker can pin down the
+WordPress-specific decision.
+
+The translator runs **before** the requirement-generator: the asker's first round
+gathers the layman requirements, the translator maps them to WordPress terms and
+surfaces the WordPress-specific decisions, the asker interviews the user a second time
+on those decisions, and only then does the generator write the spec.
 
 ## 14.4 Supporting agents
 
