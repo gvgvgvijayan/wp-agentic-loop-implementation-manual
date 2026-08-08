@@ -3,7 +3,7 @@
   "default_agent": "wp",
   "agent": {
     "wp": {
-      "description": "Primary WordPress agent. Owns the agentic loop and delegates to pipeline and domain sub-agents.",
+      "description": "Primary WordPress agent. Owns the agentic loop and delegates to pipeline and domain sub-agents. Pipeline: requirement-asker → wp-lingo-translator → requirement-asker → requirement-generator → task-generator → tracer-bullet → issue-creator → implementor → qc → code-reviewer.",
       "mode": "primary",
       "permission": {
         "edit": "allow",

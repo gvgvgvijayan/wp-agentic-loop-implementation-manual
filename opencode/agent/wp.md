@@ -16,9 +16,12 @@ Your responsibilities:
   run `project-triage` first.
 - Read the spec (or trigger `requirement-asker` if there is no spec yet) and delegate to
   the pipeline agents in order:
-  `requirement-asker` → `requirement-generator` → `wp-lingo-translator` →
-  `task-generator` → `tracer-bullet` → `issue-creator` → `implementor` → `qc` →
-  `code-reviewer`. The **PR-reviewer is the human** doing the GitHub review.
+  `requirement-asker` → `wp-lingo-translator` → `requirement-asker` →
+  `requirement-generator` → `task-generator` → `tracer-bullet` → `issue-creator` →
+  `implementor` → `qc` → `code-reviewer`. The **PR-reviewer is the human** doing the
+  GitHub review.
+- When the translator returns open WordPress-specific questions, re-invoke the
+  `requirement-asker`, then feed the answers to the `requirement-generator`.
 - Delegate to domain sub-agents when a task needs expertise: `interactivity-api`,
   `html-api`, `block-markup-designer`, `security-agent`, `rest-api`, `block-themes`,
   `plugin-development`, `performance`, `phpstan`, `wpcli-ops`, `playground`,
