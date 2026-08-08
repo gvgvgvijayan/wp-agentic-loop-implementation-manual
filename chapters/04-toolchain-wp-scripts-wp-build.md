@@ -30,7 +30,7 @@ It requires a Node.js version with LTS status. Pin it (`.nvmrc` or `engines`).
 | `wp-scripts lint-pkg-json` | Lint `package.json`. |
 | `wp-scripts lint-md-docs` | Markdownlint for docs. |
 | `wp-scripts test-unit-js` | Jest unit tests (alias `test-unit-jest`). |
-| `wp-scripts test-e2e` | Playwright E2E tests (alias `test-playwright`). |
+| `wp-scripts test-e2e` | Playwright E2E tests. In Gutenberg, `package.json` maps `test:e2e` to `wp-scripts test-e2e --config playwright.config.ts` (github.com/WordPress/gutenberg/blob/trunk/package.json). `test-playwright` is an alias. |
 | `wp-scripts plugin-zip` | Create a distributable plugin zip. |
 | `wp-scripts build-blocks-manifest` | Generate a PHP block-metadata manifest. |
 | `wp-scripts check-engines` | Check node/npm versions. |
@@ -104,22 +104,21 @@ official docs and the Gutenberg repo):
 
 ### Status and guidance
 
-- **Experimental / pre-1.0.** The API is described as "malleable" and "still being
-  shaped." The package uses `0.x` versioning (e.g. v0.19.0).
-- **Not ready for every use case.** In particular, a plugin registering blocks still
-  has gaps that require manual workarounds.
+- **Maturing but repo-specific.** The package is actively developed; some repos (including
+  parts of Gutenberg) already use it as the primary build engine. The exact commands and
+  conventions depend on the repo's `package.json`.
 - **Convergence roadmap:** the long-term plan is for `@wordpress/build` to become the
   engine *underneath* `@wordpress/scripts`, so `wp-scripts build` keeps working but
   uses the faster engine internally. Eventually webpack and Babel are deprecated from
   `@wordpress/scripts`.
 
-> **Bottom line for the loop:** for most plugin/theme developers today, **stay on
-> `@wordpress/scripts`**. Watch `wp-build` as it matures. The agent should know both
-> exist and which one the repo uses.
-
-### Sources
-
-- `@wordpress/scripts` docs: developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/
-- `@wordpress/build` docs: developer.wordpress.org/block-editor/reference-guides/packages/packages-wp-build/
-- Announcement: developer.wordpress.org/news/2026/04/wordpress-build-the-next-generation-of-wordpress-plugin-build-tooling/
-- Vision issue: github.com/WordPress/gutenberg/issues/72032
+> **Bottom line for the loop:** check the target repo's `package.json`/`AGENTS.md` to
+> see whether it uses `@wordpress/scripts` or `@wordpress/build` directly. For repos
+> still on `wp-scripts`, stay on `wp-scripts` and treat `wp-build` as an implementation
+> detail. The agent should know both exist and which one the repo uses.
+>
+> Sources:
+> - `@wordpress/scripts` docs: https://developer.wordpress.org/block-editor/reference-guides/packages/packages-scripts/
+> - `@wordpress/build` docs: https://developer.wordpress.org/block-editor/reference-guides/packages/packages-wp-build/
+> - Announcement: https://developer.wordpress.org/news/2026/04/wordpress-build-the-next-generation-of-wordpress-plugin-build-tooling/
+> - Vision issue: github.com/WordPress/gutenberg/issues/72032
