@@ -60,7 +60,7 @@ If you are implementing this in another system, follow
 The original single-file draft captured the timeless concepts. This manual keeps those
 concepts and **rewrites the tooling** to match how modern WordPress development actually
 works — verified against the Gutenberg, WooCommerce, wordpress-develop, wp-movies-demo,
-x3p0-ideas, advanced-query-loop, and coblocks codebases, plus the hospital plugins and
-themes and the swirl case study. Where the old draft said `composer run phpcs`, this
+x3p0-ideas, advanced-query-loop, and coblocks codebases, plus private plugin/theme
+projects and the Interactivity API case study. Where the old draft said `composer run phpcs`, this
 manual says `npm run lint:php` (via `wp-env`). Where it defined custom `.opencode/agent`
 files as the only pattern, this manual leads with `AGENTS.md` and skills.

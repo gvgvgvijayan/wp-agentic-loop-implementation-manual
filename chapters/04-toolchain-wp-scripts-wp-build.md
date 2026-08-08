@@ -41,11 +41,11 @@ It requires a Node.js version with LTS status. Pin it (`.nvmrc` or `engines`).
 
 - `--webpack-copy-php` — copies PHP files from `src` to the output directory. By
   default only the PHP files listed in the `render` and `variations` fields of detected
-  `block.json` files are copied. The hospital plugins and themes pass this always.
+  `block.json` files are copied. Modern plugin/theme projects pass this always.
 - `--experimental-modules` — enables the `viewScriptModule` field (Interactivity API
-  script modules). The hospital plugins and themes pass this always.
-- `--source-path` / `--output-path` — customize source and output directories. The
-  hospital themes use `--webpack-src-dir=assets --output-path=public`.
+  script modules). Modern plugin/theme projects pass this always.
+- `--source-path` / `--output-path` — customize source and output directories. For
+  example, x3p0-ideas uses `--webpack-src-dir=resources --output-path=public`.
 - `--blocks-manifest` — generate a PHP file with block metadata from all `block.json`
   files (for `wp_register_block_metadata_collection()`).
 
@@ -65,7 +65,7 @@ all your blocks:
 
 The fallback entry point is `src/index.js` if no `block.json` is found.
 
-### A realistic `package.json` (from the hospital plugins)
+### A realistic `package.json` (plugin/theme example)
 
 ```json
 {

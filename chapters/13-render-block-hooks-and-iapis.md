@@ -1,9 +1,9 @@
 # 13 — Render-Block Hooks, the HTML API & the Interactivity API
 
-This chapter is distilled from the **swirl** case study in the vijayan-child theme
-(`docs/issues/swirl/`). It teaches the canonical way to extend **core blocks** with
-interactivity — a common, high-value WordPress task that the original draft did not
-cover.
+This chapter is distilled from the **swirl** case study (extending `core/group` with
+Interactivity API directives). It teaches the canonical way to extend **core blocks**
+with interactivity — a common, high-value WordPress task that the original draft did
+not cover.
 
 ## 13.1 The problem: core blocks have frozen `save()` output
 
@@ -33,7 +33,7 @@ $processor->set_attribute( 'data-wp-on--click', 'actions.showLightbox' );
 
 ## 13.3 The swirl pattern (from the case study)
 
-The swirl is an enhancement of `core/group`:
+The *swirl* is an enhancement of `core/group`:
 
 - `register_block_style( 'core/group', 'swirl' )` adds `is-style-swirl` to the wrapper
   for CSS targeting.

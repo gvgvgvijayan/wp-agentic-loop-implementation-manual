@@ -8,10 +8,11 @@ Chapter 06 (Red → Green → Refactor).
 
 ## 9.2 Verification is not optional — and the commands are correct
 
-The build agent must run the project's checks. **The commands below are the real ones**
-for modern WordPress repos (verified against Gutenberg, the hospital plugins, and the
-themes). The old draft's `composer run phpcs` / `composer run phpunit` are wrong for
-most repos.
+The build agent must run the project's checks. **The commands below are representative**
+for modern WordPress repos (verified against Gutenberg, WooCommerce, wp-movies-demo,
+x3p0-ideas, advanced-query-loop, and CoBlocks). The exact script names come from the
+target repo's `AGENTS.md` and `package.json`. The old draft's `composer run phpcs` /
+`composer run phpunit` are wrong for most repos.
 
 ### Gutenberg (monorepo)
 
